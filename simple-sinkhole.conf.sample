@@ -1,0 +1,21 @@
+# Basic config file
+#
+# Any (or all) of these options can be overriden on the command line.
+
+
+[MainConfig]
+
+# Base hosts file - will be appended in the beginning of the newly created hosts file
+HostsBase: /etc/hosts.orig
+
+# Folder with .conf files for various lists
+ListsFolder: /opt/simple-sinkhole/lists.d/
+
+# IP address to return for blacklisted domains.  You can set this to a webserver to catch the referrals
+SinkholeIP: 127.0.0.1
+
+# Database (sqlite) name and location.  This is used to easily save the results from the lists and weed out duplicates
+Database: /opt/simple-sinkhole/domains.db
+
+# Hosts file to create
+HostsFile: /opt/simple-sinkhole/hosts.new
