@@ -64,10 +64,10 @@ That should be it.  It should have done an initial download, set up the hosts fi
 
 The lists.d conf files are meant to be pretty simple.  They are just a python dictionary, with the following possible attributes:
 
-source: <b>Required</b> - string, the source URL of the list
-regex: <b>Required</b> - string, A python regex that'll match the domain in the list.  If you need help, check out pythex.org
-prelines: int, number of lines to skip at the beginning,
-pre: string, A line of text denoting the start of the domain entries,
-post: string, A line of text denoting the end of the domain entries
+* source: <b>Required</b> - string, the source URL of the list
+* regex: <b>Required</b> - string, A python regex that'll match the domain in the list.  If you need help, check out pythex.org
+* prelines: int, number of lines to skip at the beginning
+* pre: string, A line of text denoting the start of the domain entries
+* post: string, A line of text denoting the end of the domain entries
 
 You can look in the couple of conf files I built under lists.d to see how they are used.
