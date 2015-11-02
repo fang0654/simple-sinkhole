@@ -1,0 +1,7 @@
+{
+	'source': '',  # source URL
+	'regex': '',  # Python regex
+	#'prelines': 0,   # Optional number of lines to skip
+	#'pre': '', # Optional line of text demarking the beginning
+	#'post': '', # Optional line of text demarking the end
+}
