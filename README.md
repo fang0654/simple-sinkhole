@@ -3,6 +3,8 @@ A python script for updating lists for a simple sinkhole DNS server
 
 I was tasked with setting up a sinkhole DNS server for my office, that can query various lists.  I figured I would make something useful and simple.  This is designed to work with dnsmasq, but can probably work with bind with some minor modification.
 
+## Usage
+
 usage: simple-sinkhole.py [-h] [-c CONFIG] [-l LISTSFOLDER] [-i SINKHOLEIP]
                           [-f HOSTSFILE] [-d DATABASE] [-o HOSTSBASE]
 
@@ -26,5 +28,32 @@ optional arguments:
 
 
 
-# Installation
+## Installation
 
+In order to run, the script just needs a valid config file set up, some lists to download, and write access to a database and your hosts file (or a link to it).  Following is a sample installation on a vanilla Ubuntu 14.04 Server installation (only installed base and openssh)
+
+First, just get everything up to date:
+```
+sudo apt-get update && sudo apt-get dist-upgrade -y
+sudo apt-get install dnsmasq git -y
+sudo reboot
+```
+
+After it finishes rebooting, log in again, and:
+
+```
+sudo useradd -s /bin/false -r sinkhole
+cd /opt
+sudo git clone https://github.com/fang0654/simple-sinkhole.git
+sudo mv simple-sinkhole.conf.sample /etc/simple-sinkhole.conf
+sudo chown sinkhole /opt/simple-sinkhole
+sudo mv /etc/hosts /etc/hosts.orig
+sudo ln -s /opt/simple-sinkhole/hosts.new /etc/hosts
+sudo crontab -l | { cat; echo "0 0 * * * sudo -u sinkhole /usr/bin/env python2 /opt/simple-sinkhole/simple-sinkhole.py \
+-c /etc/simple-sinkhole.conf \
+&& /etc/init.d/dnsmasq restart"; } | sudo crontab -
+sudo -u sinkhole /usr/bin/env python2 /opt/simple-sinkhole/simple-sinkhole.py -c /etc/simple-sinkhole.conf
+sudo dnsmasq restart
+```
+
+That should be it.  It should have done an initial download, set up the hosts file, and scheduled the crontab to run every night at midnight.
