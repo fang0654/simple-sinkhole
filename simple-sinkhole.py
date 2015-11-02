@@ -80,7 +80,7 @@ if __name__ == "__main__":
 				exit(1)				
 
 	
-	conn = create_database('domains.db')
+	conn = create_database(config_options['database'])
 	cur = conn.cursor()
 
 
