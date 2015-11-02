@@ -5,6 +5,7 @@ I was tasked with setting up a sinkhole DNS server for my office, that can query
 
 ## Usage
 
+```
 usage: simple-sinkhole.py [-h] [-c CONFIG] [-l LISTSFOLDER] [-i SINKHOLEIP]
                           [-f HOSTSFILE] [-d DATABASE] [-o HOSTSBASE]
 
@@ -25,7 +26,7 @@ optional arguments:
                         Database file
   -o HOSTSBASE, --hostsbase HOSTSBASE
                         Base host file (will be at top of new hosts file)
-
+```
 
 
 ## Installation
